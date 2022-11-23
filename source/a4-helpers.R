@@ -6,7 +6,7 @@ library(tidyverse)
 # Note: The CSV file is stored on my local machine to speed load times
 #---------------------------------------------------------------------------#
 get_data <- function(num_records=-1) {
-  fname <- "~/Documents/info201/data/incarceration_trends.csv"
+  fname <- "~/info201/data/incarceration_trends.csv"
   df <- read.csv(fname, nrows=num_records)
   return(df)
 }
@@ -150,21 +150,21 @@ get_basic_info <- function(df) {
 # Comment or uncomment 
 #----------------------------------------------------------------------------#
 # ## Very important: You must initialize `incarceration_df`
-# incarceration_df <- get_data()
-# 
+ #incarceration_df <- get_data()
+ 
 # ## Demonstrate use of the functions
 # ## Each of these functions returns a vector of states
-# states_in_region("South")
-# states_in_division("Pacific")
-# states_in_region_or_division("South")        
-# states_in_region_or_division("Mountain")  
-# states_in_region_or_division("OR")          # returns c("OR")
-# 
+ #states_in_region("South")
+ #states_in_division("Pacific")
+ #states_in_region_or_division("South")        
+ #states_in_region_or_division("Mountain")  
+ #states_in_region_or_division("OR")          # returns c("OR")
+ 
 # ## Returns the divisions that makeup a region 
-# divisions_in_region("West")
-# 
+ #divisions_in_region("West")
+ 
 # ## Returns basic information about the dataset
-# get_basic_info(incarceration_df)
+ #get_basic_info(incarceration_df)
 # 
 # ## 
-# states_with_no_jail_pop()
+ #states_with_no_jail_pop()

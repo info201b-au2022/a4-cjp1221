@@ -1,7 +1,7 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Ethical Exploration of U.S. Prison and Jail Populations"
+author: "Chris Petersen"
+date: '2022-11-21'
 output: html_document
 ---
 
@@ -11,35 +11,43 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+In this report, I investigate a number of factors related to injustice in the U.S. prison system. First I explore how jail populations have grown significantly over the past decades and contrast differences among states. Next I examine the ways race and sex affect rates of imprisonment in comparing black and white female jail populations. Lastly, I look at how and where Natives are imprisoned by making a chloropleth map of  proportions of native prison populations. All of this with the goal of examining overarching oppresive structures in relation to the prison system.
 
 ## Introduction 
-[TODO]
+
+Relevant Social Issues:
+After decades of growth the incarceration rate has gone on the decline, but the nature of incarceration is changing. Factors like race, sex, and region are parts of an oppressive system that contributes to large disparities in imprisonment rates. Over the past decade organizations like Black Lives Matter have sprung up to bring more attention to these issues and address the real human injustice. Some positive changes have been made in urban population centers following the growth of these organizations, but different changes have been made in smaller local counties. This has led to a wide variation of imprisonment policy across different states and counties.
+
+Stakeholders and Core values:
+The greatest stakeholders are individuals most affected by the imprisonment system such as people of color, single mothers, and those suffering from mental illness. Other stakeholders are policy makers and community members seeking to make positive reforms in the prison system. Police are a large part of the system and would be greatly affected by an understanding of these values and changes. Values of autonomy and freedom, community and compassion, and  order.
+
+I hope to investigate how different factors of identity relate to imprisonment rates and identify the policy decisions needed to reduce injustice.
 
 ## Data Summary 
-[TODO]
+For the first part of my exploration, I wanted to look at how *women* were represented in the U.S.prison system, particularly comparing the *black and white populations*. I found that black women make up _*`r percent_black_female`*_ of the prison population, despite making up around 11% of the total U.S. population. White women on the other hand make up _*`r percent_white_female`*_ while representing about half of the total U.S. population. This marks a clear racial inequality in the prison system.
 
-[TODO ... other sections ... See Canvas for details]
+Next I wanted to explore the differences in jail populations between *urban* and *non-urban* areas. I found that despite harboring 80% of the total U.S. population, urban jails hold only _*`r percent_urban`*_ of the total jail population. This means that while representing less than a fifth of the total population, non-urban jails bear the brunt of _*`r percent_non_urban`*_ of the jail population. Many non-urban counties policy decisions differ from large urban counties, and reform is needed as incarceration rates continue to grow in small counties despite reforms in larger urban ones.
 
-_All the very best with your work!_
+# Growth of the U.S. Prison Population
 
+```{r echo = FALSE}
+plot_jail_pop_for_us()
+```
+
+The population of U.S. jails have grown greatly over the past decades and though they've declined since their peak in 2008, they remain steadily high. What policy decisions may have led to this change? And how can policy reforms best help to further reduce these populations? While useful, this graph fails to represent a variety of oppressive factors which have contributed to the prison population as displayed above. Considering factors like race, gender, sexuality, and region is important to gain a better understanding of the big picture.
+
+# Black and White Female Prison Populations
+
+```{r echo = FALSE}
+black_white_jail_plot()
+```
+
+Exploring the data set, I wanted to look at how factors like race and sex affected rates of imprisonment. In this graph I compare current populations of white women and black women in prison. A quick glance at the visual shows that most prisons have more white women than black women, with small counties leaning much more white. As the population increases, a larger black population among women in prison is becomes likely.
+
+# Percentages of Native Americans in Washington Prisons by County
+
+```{r echo = FALSE}
+wash_native_pop
+```
+
+In this visual I wanted to take a closer look at variability across local counties. So, I chose to look at Native American populations in Washington counties to investigate possible differences and their causes. While an original look at native populations would highlight Seattle, looking at the comparative proportions of natives out of county prison populations highlights other areas with heightened rates. Larger proportions of natives in prison often coincide with nearby tribes. This can be clearly seen in the northeast with the presence of the Colville tribe.
