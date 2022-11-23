@@ -9,8 +9,9 @@ incarceration_df <- get_data()
 
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
-# Your functions and variables might go here ... <todo: update comment>
 #----------------------------------------------------------------------------#
+
+# Generate female race data
 female_prison_data <- incarceration_df %>%
   summarize(
     white_female_pop = sum(white_female_prison_pop, na.rm = T),
@@ -27,6 +28,7 @@ percent_black_female <- "25%" #round down 0.253
 percent_white_female <- "40%" #round up 0.396
 
 
+# Generate urban vs non urban population data
 jail_pop <- incarceration_df %>%
   summarize(jail_pop = sum(total_jail_pop, na.rm = T)) %>%
   pull(jail_pop)
@@ -45,14 +47,14 @@ prop_urban <- urban_jail_pop / jail_pop
 prop_non_urban <- non_urban_jail_pop / jail_pop
 percent_urban <- "34%" # round up from 0.337
 percent_non_urban <- "66%" # round down from 0.662
-#even though 80% of the population lives in urban areas
 
 
 ## Section 3  ---- 
 #----------------------------------------------------------------------------#
 # Growth of the U.S. Prison Population
-# Your functions might go here ... <todo:  update comment>
 #----------------------------------------------------------------------------#
+
+# Creates a dataframe with the total jail pop by year
 get_year_jail_pop <- function() {
   df <- incarceration_df %>%
     group_by(year) %>%
@@ -60,7 +62,7 @@ get_year_jail_pop <- function() {
   return(df)
 }
 
-
+# Plot the jail population over time as a line graph
 plot_jail_pop_for_us <- function() {
   df <- get_year_jail_pop()
   plot <- ggplot(df) +
@@ -78,9 +80,10 @@ plot_jail_pop_for_us()
 ## Section 4  ---- 
 #----------------------------------------------------------------------------#
 # Growth of Prison Population by State 
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
 #----------------------------------------------------------------------------#
+
+# Creates a dataframe with the total jail pop by year for specific states.
+# @param states The states for which jail population will be gathered.
 get_jail_pop_by_states <- function(states) {
   df <- incarceration_df %>%
     filter(state %in% states) %>%
@@ -92,7 +95,8 @@ df <- get_jail_pop_by_states(c("WA", "OR", "CA"))
 #View(df)
 
 
-
+# Plot the jail population over time as a line graph for each state in states
+# @param states The states for which jail population will be plotted.
 plot_jail_pop_by_states <- function(states) {
   df <- get_jail_pop_by_states(states)
   plot <- df %>%
@@ -112,10 +116,9 @@ plot_jail_pop_by_states(c("WA", "OR", "CA"))
 ## Section 5  ---- 
 #----------------------------------------------------------------------------#
 # <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
 #----------------------------------------------------------------------------#
 
+# Creates a dataframe with white and black female prison populations by county
 black_white_jail <- function() {
   df <- incarceration_df %>%
     select(white_female_prison_pop, black_female_prison_pop, county_name) %>%
@@ -130,6 +133,7 @@ black_white_jail <- function() {
 }
 
 
+# Plots white and black female prison populations by county
 black_white_jail_plot <- function() {
   df <- black_white_jail()
   plot <- ggplot(df) +
@@ -147,20 +151,19 @@ black_white_jail_plot()
 ## Section 6  ---- 
 #----------------------------------------------------------------------------#
 # <a map shows potential patterns of inequality that vary geographically>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
 #----------------------------------------------------------------------------#
 
-##################
-
+# Creates a counties vector that will replace the county_name column 
+# in incarceration_df
 counties <- incarceration_df$county_name
 counties <- word(counties, 1)
 counties <- tolower(counties)
 
+# Load in a data frame with state names and abreviations for easier merging
 state_name <- read.csv("~/info201/data/state_abbr.csv", stringsAsFactors = F) %>%
   mutate(state = tolower(state))
 
-
+# Creates a dataframe with the proportion of native prisoners in Washington
 temp_df <- incarceration_df %>%
   mutate(county_name = counties) %>%
   rename(code = state) %>%
@@ -172,12 +175,15 @@ temp_df <- incarceration_df %>%
   summarize(total_native = sum(native_pop_15to64, na.rm = T) / sum(total_pop_15to64, na.rm = T))
 #View(temp_df)
 
+# Joins the native proportion and county data with a mapping of county 
+# boundries in Washington
 state_shape <- map_data("county") %>%
   rename(county_name = subregion) %>%
   filter(region == "washington") %>% 
   right_join(temp_df, by="county_name")
 #View(state_shape)
 
+# Creates a map of percentages of natives in prison by county
 wash_native_pop <- ggplot(state_shape) +
   geom_polygon( 
     mapping = aes(x = long, y= lat, group = group, fill = total_native),
