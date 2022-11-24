@@ -156,8 +156,8 @@ black_white_jail_plot()
 # Creates a counties vector that will replace the county_name column 
 # in incarceration_df
 counties <- incarceration_df$county_name
-counties <- word(counties, 1)
 counties <- tolower(counties)
+counties <- str_replace(counties, " county", "")
 
 # Load in a data frame with state names and abreviations for easier merging
 state_name <- read.csv("~/info201/data/state_abbr.csv", stringsAsFactors = F) %>%
@@ -205,8 +205,8 @@ wash_native_pop
 # Creates a counties vector that will replace the county_name column 
 # in incarceration_df
 counties <- incarceration_df$county_name
-counties <- word(counties, 1)
 counties <- tolower(counties)
+counties <- str_replace(counties, " county", "")
 
 # Load in a data frame with state names and abreviations for easier merging
 state_name <- read.csv("~/info201/data/state_abbr.csv", stringsAsFactors = F) %>%
