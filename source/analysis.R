@@ -194,8 +194,15 @@ wash_native_pop <- ggplot(state_shape) +
   scale_fill_continuous(low = "yellow", high = "red") +
   labs(
     title = "Percentage of Native Americans in Prison by Washington County",
-    fill = "Prison Native Percentage"
-  )
+    fill = "Prison Native Percentage",
+    x = element_blank(),
+    y = element_blank()
+  ) +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
 wash_native_pop
 
 
@@ -264,6 +271,13 @@ county_jail_change <- ggplot(state_shape_county) +
   labs(
     title = "Change in Jail Populations per Washington County Since 2010",
     fill = "Change in Jail Population",
-  ) 
+    x = element_blank(),
+    y = element_blank()
+  ) +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
 county_jail_change
 
