@@ -197,3 +197,73 @@ wash_native_pop <- ggplot(state_shape) +
     fill = "Prison Native Percentage"
   )
 wash_native_pop
+
+
+
+#### Test county jail population change since 2010
+
+# Creates a counties vector that will replace the county_name column 
+# in incarceration_df
+counties <- incarceration_df$county_name
+counties <- word(counties, 1)
+counties <- tolower(counties)
+
+# Load in a data frame with state names and abreviations for easier merging
+state_name <- read.csv("~/info201/data/state_abbr.csv", stringsAsFactors = F) %>%
+  mutate(state = tolower(state))
+
+# Creates a dataframe with the proportion of native prisoners in Washington
+county_df <- incarceration_df %>%
+  mutate(county_name = counties) %>%
+  rename(code = state) %>%
+  filter(code == "WA", year > 2009) %>%
+  left_join(state_name, by="code") %>%
+  select(state, county_name, year, total_jail_pop) 
+#View(county_df)
+
+ten <- county_df %>%
+  filter(year == 2010) %>%
+  group_by(county_name) %>%
+  summarize(pop_2010 = total_jail_pop)
+#View(ten)
+
+eighteen <- county_df %>%
+  filter(year == 2018) %>%
+  group_by(county_name) %>%
+  summarize(pop_2018 = total_jail_pop)
+#View(eighteen)
+
+change_since_2010 <- left_join(ten, eighteen, by = "county_name") %>%
+  group_by(county_name) %>%
+  summarize(change = pop_2010 - pop_2018)
+#View(change_since_2010)
+
+county_df <- county_df %>%
+  filter(year == 2018) %>%
+  left_join(change_since_2010, by = "county_name")
+#View(county_df)
+  
+
+# Joins the native proportion and county data with a mapping of county 
+# boundries in Washington
+state_shape_county <- map_data("county") %>%
+  rename(county_name = subregion) %>%
+  filter(region == "washington") %>% 
+  right_join(county_df, by="county_name")
+#View(state_shape_county)
+
+# Creates a map of changes in jail population since 2010
+county_jail_change <- ggplot(state_shape_county) +
+  geom_polygon( 
+    mapping = aes(x = long, y= lat, group = group, fill = change),
+    color = "black",
+    size  = .1, 
+  ) +
+  coord_map() +
+  scale_fill_continuous(low = "yellow", high = "red") +
+  labs(
+    title = "Change in Jail Populations per Washington County Since 2010",
+    fill = "Change in Jail Population",
+  ) 
+county_jail_change
+

@@ -11,17 +11,17 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-In this report, I investigate a number of factors related to injustice in the U.S. prison system. First I explore how jail populations have grown significantly over the past decades and contrast differences among states. Next I examine the ways race and sex affect rates of imprisonment in comparing black and white female jail populations. Lastly, I look at how and where Natives are imprisoned by making a chloropleth map of  proportions of native prison populations. All of this with the goal of examining overarching oppresive structures in relation to the prison system.
+In this report, I investigate a number of factors related to injustice in the U.S. prison system. First I explore how jail populations have grown significantly over the past decades and contrast differences among states. Next I examine the ways race and sex affect rates of imprisonment in comparing black and white female jail populations. Lastly, I look at how and where Natives are imprisoned by making a chloropleth map of  proportions of native prison populations. I add another chloroplath map at the end to better examine how jail populations have changed on a smaller scale between counties in Washington state. All of this with the goal of examining overarching structures of oppressive in relation to the prison system.
 
 ## Introduction 
 
 Relevant Social Issues:
-After decades of growth the incarceration rate has gone on the decline, but the nature of incarceration is changing. Factors like race, sex, and region are parts of an oppressive system that contributes to large disparities in imprisonment rates. Over the past decade organizations like Black Lives Matter have sprung up to bring more attention to these issues and address the real human injustice. Some positive changes have been made in urban population centers following the growth of these organizations, but different changes have been made in smaller local counties. This has led to a wide variation of imprisonment policy across different states and counties.
+After decades of growth the incarceration rate has gone on the decline, but the nature of incarceration is changing. Factors like race, sex, and region are parts of a system that contributes to large disparities in imprisonment rates. Over the past decade, organizations like Black Lives Matter have sprung up to bring more attention to these issues and address the real human injustice. Some positive changes have been made in urban population centers following the growth of these organizations, but different changes have been made in smaller local counties. This has led to a wide variation of imprisonment policy across different states and counties.
 
 Stakeholders and Core values:
-The greatest stakeholders are individuals most affected by the imprisonment system such as people of color, single mothers, and those suffering from mental illness. Other stakeholders are policy makers and community members seeking to make positive reforms in the prison system. Police are a large part of the system and would be greatly affected by an understanding of these values and changes. Values of autonomy and freedom, community and compassion, and  order.
+The greatest stakeholders are individuals most affected by the imprisonment system such as people of color, single mothers, and those suffering from mental illness. Other stakeholders are policy makers and community members seeking to make positive reforms in the prison system. Police are a large part of the system and would be greatly affected by an understanding of these values and changes. Values of autonomy and freedom, community and compassion, and  order are all relevant in this context.
 
-I hope to investigate how different factors of identity relate to imprisonment rates and identify the policy decisions needed to reduce injustice.
+I hope to investigate how different factors of identity and location relate to imprisonment rates and identify the policy decisions needed to reduce injustice.
 
 ## Data Summary 
 For the first part of my exploration, I wanted to look at how *women* were represented in the U.S.prison system, particularly comparing the *black and white populations*. I found that black women make up _*`r percent_black_female`*_ of the prison population, despite making up around 11% of the total U.S. population. White women on the other hand make up _*`r percent_white_female`*_ while representing about half of the total U.S. population. This marks a clear racial inequality in the prison system.
@@ -51,3 +51,11 @@ wash_native_pop
 ```
 
 In this visual I wanted to take a closer look at variability across local counties. So, I chose to look at Native American populations in Washington counties to investigate possible differences and their causes. While an original look at native populations would highlight Seattle, looking at the comparative proportions of natives out of county prison populations highlights other areas with heightened rates. Larger proportions of natives in prison often coincide with nearby tribes. This can be clearly seen in the northeast with the presence of the Colville tribe.
+
+# Changes in Jail Populations by County
+
+```{r echo = FALSE}
+county_jail_change
+```
+
+After doing some reading about the project, I noticed that one of the major factors in recent years was the change of jail populations between counties. As observable in the above map, urban counties have taken steps to reduce their overall jail populations while most smaller counties seem to stagnate or continue to grow. This calls for more policy reforms within local counties and clarity on how policy is expected to be enacted county to county.
