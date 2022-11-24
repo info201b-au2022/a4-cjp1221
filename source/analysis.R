@@ -126,12 +126,12 @@ black_white_jail <- function() {
     group_by(county_name) %>%
     summarize(
       white_pop = sum(white_female_prison_pop),
-      black_pop = sum(black_female_prison_pop)
-      ) %>%
+      black_pop = sum(black_female_prison_pop),
+      ) %>% 
     filter(black_pop < 15000, white_pop < 15000) # filter outliers
   return(df)
 }
-
+#View(black_white_jail())
 
 # Plots white and black female prison populations by county
 black_white_jail_plot <- function() {

@@ -11,7 +11,7 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-In this report, I investigate a number of factors related to injustice in the U.S. prison system. First I explore how jail populations have grown significantly over the past decades and contrast differences among states. Next I examine the ways race and sex affect rates of imprisonment in comparing black and white female jail populations. Lastly, I look at how and where Natives are imprisoned by making a chloropleth map of  proportions of native prison populations. I add another chloroplath map at the end to better examine how jail populations have changed on a smaller scale between counties in Washington state. All of this with the goal of examining overarching structures of oppressive in relation to the prison system.
+In this report, I investigate a number of factors related to injustice in the U.S. prison system. First I explore how jail populations have grown significantly over the past decades and contrast differences among states. Next I examine the ways race and sex affect rates of imprisonment in comparing black and white female jail populations. Lastly, I look at how and where Natives are imprisoned by making a chloropleth map of  proportions of native prison populations. I add another chloroplath map at the end to better examine how jail populations have changed on a smaller scale between counties in Washington state. All of this with the goal of examining patterns in the prison system to make reforms and improve future policy decisions.
 
 ## Introduction 
 
@@ -34,7 +34,7 @@ Next I wanted to explore the differences in jail populations between *urban* and
 plot_jail_pop_for_us()
 ```
 
-The population of U.S. jails have grown greatly over the past decades and though they've declined since their peak in 2008, they remain steadily high. What policy decisions may have led to this change? And how can policy reforms best help to further reduce these populations? While useful, this graph fails to represent a variety of oppressive factors which have contributed to the prison population as displayed above. Considering factors like race, gender, sexuality, and region is important to gain a better understanding of the big picture.
+The population of U.S. jails have grown greatly over the past decades and though they've declined since their peak in 2008, they remain steadily high. What policy decisions may have led to this change? And how can policy reforms best help to further reduce these populations? While useful, this graph fails to represent a variety of factors which have contributed to the prison population as displayed above. Considering race, gender, and location is important to gain a better understanding of the big picture.
 
 # Black and White Female Prison Populations
 
@@ -42,7 +42,7 @@ The population of U.S. jails have grown greatly over the past decades and though
 black_white_jail_plot()
 ```
 
-Exploring the data set, I wanted to look at how factors like race and sex affected rates of imprisonment. In this graph I compare current populations of white women and black women in prison. A quick glance at the visual shows that most prisons have more white women than black women, with small counties leaning much more white.
+Exploring the data set, I wanted to look at how factors like race and sex affected rates of imprisonment. In this graph I compare current populations of white women and black women in prison. A quick glance at the visual shows that most prisons have more white women than black women, with small counties leaning much more white. I chose to remove the outliers of Los Angeles County, New York, County, and Maricopa County, whose high populations offset the graph.
 
 # Percentages of Native Americans in Washington Prisons by County
 
